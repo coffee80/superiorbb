@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { UserService } from '../user-service';
 
 @Component({
   selector: 'app-top-menu',
@@ -8,5 +9,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './top-menu.css',
 })
 export class TopMenu {
+
+    userService = inject(UserService);
+    loggedUser = this.userService.loggedUser;
 
 }

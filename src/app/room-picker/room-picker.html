@@ -1,0 +1,30 @@
+<!-- solo le stanze libere per il determinato hotel -->
+<div>
+    <h1> Inserimento prenotazione </h1>
+</div>
+<div class="intervalpicker w3-row">
+    <div class="w3-third">
+        <h2> Dettaglio periodo </h2>
+        <div>
+            <form>
+                Arrivo
+                <input type="date" class="w3-input" name="from" [(ngModel)]="from" />
+                Partenza 
+                <input type="date" class="w3-input" name="from" [(ngModel)]="to" />
+            </form>
+        </div>
+        <h2> Ospite </h2>
+        <app-guest-picker [(guest)]="guest"></app-guest-picker>
+    </div>
+    <div class="w3-rest">
+        @if(from()!=null && to()!=null){
+        <div class="roompicker">
+            <h2> Stanze libere per il periodo selezionato  </h2>
+            @for(category of freeRoomsByCategories(); track category.id){
+                <app-room-category-picker [roomCategory]="category" />
+            }
+        </div>
+        }
+    </div>
+</div>
+
