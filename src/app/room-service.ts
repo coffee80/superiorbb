@@ -17,7 +17,7 @@ export class RoomService {
     
 
     public findFreeRoomsForHotel(id:number, from:string, to:string):Observable<RoomCategory[]>{
-        let url = this.freeRoomsUrl+id+"/"+from+"/"+to;
+        let url = this.freeRoomsUrl+id+"/"+from.toString()+"/"+to.toString();
         return this.http.get<RoomCategory[]>(url);
     }
 

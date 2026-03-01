@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoomCategoryPicker } from './room-category-picker';
+import { LoginTest } from './login-test';
 
-describe('RoomCategoryPicker', () => {
-  let component: RoomCategoryPicker;
-  let fixture: ComponentFixture<RoomCategoryPicker>;
+describe('LoginTest', () => {
+  let component: LoginTest;
+  let fixture: ComponentFixture<LoginTest>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RoomCategoryPicker]
+      imports: [LoginTest]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RoomCategoryPicker);
+    fixture = TestBed.createComponent(LoginTest);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

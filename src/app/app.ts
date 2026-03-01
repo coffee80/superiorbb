@@ -1,11 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TopMenu } from "./top-menu/top-menu";
-import { RoomPicker } from "./room-picker/room-picker";
+import { BookRoom } from "./book-room/book-room";
+import { LoginTest } from "./login-test/login-test";
+import { FormLogin } from "./form-login/form-login";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, TopMenu, RoomPicker],
+  imports: [RouterOutlet, TopMenu, FormLogin],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -12,6 +12,7 @@ export interface Room {
     id?:number;
     name:string;
     hotelId:number;
+    roomCategory?:RoomCategory;
 }
 
 // RoomCategoryDTO
@@ -22,6 +23,8 @@ export interface RoomCategory {
     price:number;
     images:string[],
     free?:number; // numero di stanze libere in un dato momento, mi arriva dal backend
+    roomNames:string[];
+    defaultRoom:string;
 }
 
 export interface Booking{

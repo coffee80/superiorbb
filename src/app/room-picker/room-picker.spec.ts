@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RoomPicker } from './room-picker';
+import { RoomCategoryPicker } from './room-category-picker';
 
-describe('RoomPicker', () => {
-  let component: RoomPicker;
-  let fixture: ComponentFixture<RoomPicker>;
+describe('RoomCategoryPicker', () => {
+  let component: RoomCategoryPicker;
+  let fixture: ComponentFixture<RoomCategoryPicker>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RoomPicker]
+      imports: [RoomCategoryPicker]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(RoomPicker);
+    fixture = TestBed.createComponent(RoomCategoryPicker);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

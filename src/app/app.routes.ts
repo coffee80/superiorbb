@@ -1,9 +1,8 @@
 import { Routes } from '@angular/router';
-import { HomePage } from './home-page/home-page';
 import { BookRoom } from './book-room/book-room';
-import { RoomPicker } from './room-picker/room-picker';
+import { FormLogin } from './form-login/form-login';
 
 export const routes: Routes = [
-    { path: 'bookroom/:id', component: BookRoom },
-    { path:'', component:RoomPicker}
+    { path:'', component:BookRoom},
+    { path:'login', component:FormLogin}
 ];
