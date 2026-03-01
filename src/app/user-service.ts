@@ -2,14 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { User } from './model/hotel.entities';
 import { Observable, tap } from 'rxjs';
-/*
-    io non mi limito a fare chiamate api
-    io conservo anche un utente loggato diverso per ogni client
-    potenzialmente...
-    ogni client potrà memorizzare al suo interno
-    un utente loggato diverso
-
-*/
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,10 +13,40 @@ export class UserService {
 
     http = inject(HttpClient);
 
-    private _loggedUser = signal<User | null>(null);
+    private _loggedUser = signal<User | null>(this.getUserFromStorage());
     loggedUser = this._loggedUser.asReadonly();
+    router = inject(Router);
+
 
     constructor(){
+    }
+
+    private getUserFromStorage(): User | null {
+        const token = localStorage.getItem('token');
+        if (!token) return null;
+
+        return this.tokenToUser(token);
+    }
+
+    private tokenToUser(token:string):User | null{
+        try {
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            return {
+                id: payload.id,
+                firstName: payload.firstName,
+                lastName: payload.lastName,
+                email: payload.email,
+                role: payload.role,
+                hotel: {
+                    id: payload.hotelId,
+                    name: payload.hotelName,
+                    address: payload.hotelAddress,
+                    city: payload.hotelCity
+                }
+            };
+        } catch (e) {
+            return null;
+        }
     }
 
     public doLogin(username:string, password:string):Observable<any>{
@@ -32,23 +55,15 @@ export class UserService {
                 const token = json.token;
                 // ci servirà dopo...
                 localStorage.setItem('token', token);
-                const payload = JSON.parse(atob(token.split('.')[1]));
-                
-                const user: User = {
-                    id: payload.id,
-                    firstName: payload.firstName,
-                    lastName: payload.lastName,
-                    email: payload.email,
-                    role: payload.role,
-                    hotel: {
-                        id: payload.hotelId,
-                        name: payload.hotelName,
-                        address: payload.hotelAddress,
-                        city: payload.hotelCity
-                    }
-                };
-                this._loggedUser.set(user);
+                this._loggedUser.set(this.tokenToUser(token));
             })
         );
     }
+
+    public doLogout():void{
+        localStorage.removeItem('token');
+        this._loggedUser.set(null);
+        this.router.navigate(['/login']);
+    }
+
 }

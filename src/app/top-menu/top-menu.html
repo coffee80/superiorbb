@@ -12,7 +12,8 @@
     <div class="w3-col m2 l2 s12 w3-right-align" id="userbox" style="align-self:flex-end" >
         @if(loggedUser()!=null) {
             {{loggedUser()!.firstName}} {{loggedUser()!.lastName}} <br />
-            {{loggedUser()!.hotel.name}}
+            {{loggedUser()!.hotel.name}} <br />
+            <button (click)="logout()"> Logout </button>
         }@else{
             <div> loading... </div>   
         }
