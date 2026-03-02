@@ -22,8 +22,8 @@ export class BookRoom {
     loggedUser = this.userService.loggedUser;
     
     // stato della prenotazione suddiviso in signal
-    from = signal<Date | null>(new Date());
-    to = signal<Date | null>(new Date(new Date().setDate(new Date().getDate() + 1)));
+    from = signal<Date>(new Date());
+    to = signal<Date>(new Date(new Date().setDate(new Date().getDate() + 1)));
     guest = signal<Guest | null>(null);
     price = signal<number |null>(null);
     notes = signal<string>("");
@@ -49,11 +49,8 @@ export class BookRoom {
     
         let id:number = this.loggedUser()?.hotel.id ?? 0;
 
-        // Formatto le date in stringhe YYYY-MM-DD
-        const d1Str = this.from()!.toISOString().split('T')[0];
-        const d2Str = this.to()!.toISOString().split('T')[0];
 
-        this.roomService.findFreeRoomsForHotel(id, d1Str, d2Str).subscribe({
+        this.roomService.findFreeRoomsForHotel(id, this.from(), this.to()).subscribe({
             next:(categories)=>{
                 this.freeRoomsByCategories.set(categories);
                 let category = categories[0];

@@ -56,6 +56,8 @@ export class UserService {
                 // ci servirà dopo...
                 localStorage.setItem('token', token);
                 this._loggedUser.set(this.tokenToUser(token));
+                console.log(this._loggedUser());
+                this.router.navigate(['/']);
             })
         );
     }
