@@ -9,5 +9,6 @@ export const authGuard: CanActivateFn = (route, state) => {
     return true;
   }
 
+  // RIDIREZIONO alla pagina di login se non trovo il token
   return router.createUrlTree(['/login']);
 };

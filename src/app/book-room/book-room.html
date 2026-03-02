@@ -6,8 +6,10 @@
     <div class="w3-col m3 l3 s12">
         <form>
             Arrivo 
+            {{from()}}
             <input type="date" class="w3-input" name="from" [(ngModel)]="from" />
             Partenza 
+            {{to()}}
             <input type="date" class="w3-input" name="to" [(ngModel)]="to" />
         </form>
         Ospite

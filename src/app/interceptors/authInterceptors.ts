@@ -3,6 +3,8 @@ import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, throwError } from 'rxjs';
 
+// Ciao mamma, io vengo eseguito in maniera trasparente a ogni REQUEST
+// e modifico le request
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const router = inject(Router);
   const token = localStorage.getItem('token'); // Recupera il JWT

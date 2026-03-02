@@ -29,6 +29,13 @@ export class RoomService {
 
 
         let url = this.freeRoomsUrl+id+"/"+from+"/"+to;
+        // normalmente dovrei specificare gli header con Bearer e JWT...
+        // per evitare di farlo sempre c'è qualcosa di simile ai filter in Spring
+        // ma qui si chiamano interceptor
+        // il filter di spring lavora sul server sulla request che arriva alle api
+        // l'interceptor di angular lavora sulla request prima che venga inviata al server
+        // il filter può modificare la request o fare altre azioni sul server
+        // l'interceptor serve tendenzialmente a MODIFICARE LA REQUEST
         return this.http.get<RoomCategory[]>(url);
     }
 
