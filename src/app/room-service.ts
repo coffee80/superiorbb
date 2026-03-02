@@ -15,7 +15,7 @@ export class RoomService {
     http = inject(HttpClient);
     freeRoomsUrl = "http://localhost:8080/sbb/api/rooms/free/";
     
-
+  
     public findFreeRoomsForHotel(id:number, from:any, to:any):Observable<RoomCategory[]>{
 
         console.log(from);
